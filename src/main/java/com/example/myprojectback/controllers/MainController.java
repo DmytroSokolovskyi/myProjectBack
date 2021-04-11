@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -18,15 +17,8 @@ import java.util.List;
 public class MainController {
 
     private UserDAO userDAO;
-    private PasswordEncoder passwordEncoder;
 
 
-//    @GetMapping("/")
-//    public String home(Principal principal) {
-//        System.out.println("home");
-//        System.out.println(principal);
-//        return "home";
-//    }
 
     @GetMapping("/")
     public List<User> home() {
@@ -54,13 +46,6 @@ public class MainController {
     @PostMapping("/register")
 
     public void reg(@RequestBody User user) {
-        System.out.println(user);
-        String encode = passwordEncoder.encode(user.getPass());
-        user.setPass(encode);
-
-        System.out.println(user);
-
-        userDAO.save(user);
     }
 
 }
